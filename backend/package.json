@@ -1,7 +1,7 @@
 {
   "name": "mynotebook-backend",
   "version": "1.0.0",
-  "description": "mynotebook - Notes in cloud",
+  "description": "mynotebook- Note saves in cloud",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
