@@ -3,12 +3,13 @@ const router = express.Router()
 const User = require('../models/User')
 const bcrypt = require('bcryptjs'); //Imported bcryptjs
 const jwt = require('jsonwebtoken');    // Imported  jsonwebtoken
+const fetchuser = require('../middleware/fetchuser');    // Imported  jsonwebtoken
 const { body, validationResult } = require('express-validator');    //Imported express-validator
 
 
 const JWT_SCERET = 'forpasswordsecurity'
 
-// Create a User using: POST "/api/auth/createuser" or Doesn't require auth.
+// ROUTE 1: Create a User using: POST "/api/auth/createuser" or Doesn't require auth.
 router.post('/createuser', [
     // name must be at least 3 chars long
     body('name', 'Enter a valid Name').isLength({ min: 3 }).withMessage('must be at least 5 chars long'),
@@ -58,7 +59,7 @@ router.post('/createuser', [
 })
 
 
-// Authenticate a user using: POST "/api/auth/createuser" or Doesn't require auth.
+//ROUTE 2: Authenticate a user using: POST "/api/auth/createuser" or Doesn't require auth.
 router.post('/login', [
     // username must be an email
     body('email', 'Enter a valid Email').isEmail(),
@@ -107,6 +108,22 @@ router.post('/login', [
         console.error(error.message);
         res.status(500).send("Internal server error occure")
     }
+})
+
+
+//ROUTE 3: GET logged in user Detail using: POST "/api/auth/getuser". Logedin require.
+router.post('/getuser', fetchuser , async (req, res) => {
+    try {
+        // It will find the users Id and it will also give all the detail except the password[.select("-password")]
+        userId=req.user.id;
+        const user= await User.findById(userId).select("-password")
+        res.send(user)
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal server error occure")
+    }
+
 })
 
 
