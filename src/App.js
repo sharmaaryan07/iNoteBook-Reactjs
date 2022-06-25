@@ -1,3 +1,4 @@
+import './App.css';
 import Navbar from './component/Navbar';
 import {
   BrowserRouter as Router,
@@ -13,15 +14,17 @@ function App() {
   return (
     <>
       <NoteState>
-          <Router>
-            <Navbar />
+        <Router>
+          <Navbar />
+          <div className="container">
             <Routes>
               <Route exact path='/' element={<Home />} />
               <Route exact path='/about' element={<About />} />
             </Routes>
-          </Router>
+          </div>
+        </Router>
       </NoteState>
-      </>
+    </>
   );
 }
 
