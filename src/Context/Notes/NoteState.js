@@ -21,6 +21,33 @@ const NoteState = (props) => {
           "tag": "Anime",
           "date": "2022-06-26T05:53:38.699Z",
           "__v": 0
+        },
+        {
+          "_id": "62b7f462969eca708b36cdc6",
+          "user": "62a1d08ce39def1bd1618e94",
+          "title": "My Title",
+          "desription": "Naruto",
+          "tag": "Anime",
+          "date": "2022-06-26T05:53:38.699Z",
+          "__v": 0
+        },
+        {
+          "_id": "62b7f462969eca708b36cdc6",
+          "user": "62a1d08ce39def1bd1618e94",
+          "title": "My Title",
+          "desription": "Naruto",
+          "tag": "Anime",
+          "date": "2022-06-26T05:53:38.699Z",
+          "__v": 0
+        },
+        {
+          "_id": "62b7f462969eca708b36cdc6",
+          "user": "62a1d08ce39def1bd1618e94",
+          "title": "My Title",
+          "desription": "Naruto",
+          "tag": "Anime",
+          "date": "2022-06-26T05:53:38.699Z",
+          "__v": 0
         }
       ]
 
