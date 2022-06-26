@@ -10,8 +10,8 @@ const Noteitems = (props) => {
            
                         <p className="card-text">Desription:  {note.desription}  </p>
 
-                        <button type="button" class="btn btn-outline-info btn-sm ">Delete</button>
-                        <button type="button" class="btn btn-outline-info btn-sm mx-2">Edit</button>
+                        <i class="fa-solid fa-trash mx-2"></i>
+                        <i class="fa-solid fa-user-pen mx-2"></i>
                     </div>
             </div>
         </div>

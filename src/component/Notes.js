@@ -13,7 +13,7 @@ const Notes = () => {
             <h2 className='text-center'>Your Note</h2>
 
             {notes.map((note) => {
-                return <Noteitems note={note} />;
+                return <Noteitems key={note._id} note={note} />;
             })}
         </div>
     )
