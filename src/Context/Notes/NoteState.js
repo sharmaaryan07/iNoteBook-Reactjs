@@ -70,8 +70,9 @@ const NoteState = (props) => {
 
   }
   // Delete a Note
-  const deleteNote = () => {
-
+  const deleteNote = (id) => {
+    const newNote= notes.filter((note)=>{return note._id!==id});
+    setNote(newNote)
   }
   return (
     <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote }}>
