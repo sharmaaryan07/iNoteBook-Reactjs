@@ -112,7 +112,7 @@ router.post('/login', [
 
 
 //ROUTE 3: GET logged in user Detail using: POST "/api/auth/getuser". Logedin require.
-router.post('/getuser', fetchuser , async (req, res) => {
+router.post('/getu', fetchuser , async (req, res) => {
     try {
         // It will find the users Id and it will also give all the detail except the password[.select("-password")]
         userId=req.user.id;

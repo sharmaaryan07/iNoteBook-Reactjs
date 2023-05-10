@@ -1,7 +1,9 @@
 import { useState } from "react";
 import NoteContext from "./notesContext";
 
-const NoteState = (props) => {
+const NoteState =  (props) => {
+
+  const host='http://localhost:5000';
 
   const notesInitial = [
     {
@@ -53,8 +55,22 @@ const NoteState = (props) => {
   const [notes, setNote] = useState(notesInitial);
 
   // Add a Note
-  const addNote = (title,desription, tag) => {
-    const note={
+  const addNote = async (title, desription, tag) => {
+
+    // API call
+    const response = await fetch(`${host}/api/notes/addnote`, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  
+      headers: {
+        'Content-Type': 'application/json',
+        'authToken':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJhMWQwOGNlMzlkZWYxYmQxNjE4ZTk0In0sImlhdCI6MTY1NDc4OTY3OH0.DgUcf_Z4qWcOV4B-z-rtG4FOHQyXi6hb2yJbNSUpTxk',
+      },
+        body: JSON.stringify({title, desription, tag}) // body data type must match "Content-Type" header
+    });
+    const json=response.json(); 
+
+    // Logic
+    const note = {
       "_id": "62b7f462969eca7048b36cdc6",
       "user": "62a1d08ce39def1bd1618e94",
       "title": title,
@@ -65,13 +81,41 @@ const NoteState = (props) => {
     };
     setNote(notes.concat(note))     // It will add the note
   }
-  // Edit a Note
-  const editNote = () => {
 
+
+
+  // Edit a Note
+  const editNote = async (id, title, desription,  tag) => {
+    
+    // API call
+    const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  
+      headers: {
+        'Content-Type': 'application/json',
+        'authToken':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJhMWQwOGNlMzlkZWYxYmQxNjE4ZTk0In0sImlhdCI6MTY1NDc4OTY3OH0.DgUcf_Z4qWcOV4B-z-rtG4FOHQyXi6hb2yJbNSUpTxk',
+      },
+        body: JSON.stringify({title, desription,  tag}) // body data type must match "Content-Type" header
+    });
+    const json=response.json(); 
+  
+    
+    // Logic
+    for (let index = 0; index < notes.length; index++) {
+      const element = notes[index];
+
+      if (element._id === id) {
+        element.title = title;
+        element.desription = desription;
+        element.tag = tag;
+      }
+    }
   }
+
+
   // Delete a Note
   const deleteNote = (id) => {
-    const newNote= notes.filter((note)=>{return note._id!==id});
+    const newNote = notes.filter((note) => { return note._id !== id });
     setNote(newNote)
   }
   return (
